@@ -1,1 +1,2 @@
-# Office-Employee-Management-System
+The Office Employee Management System is a Django-based web application designed to make managing employee information easy and efficient. This system allows organizations to add new employees, view all employees, filter employees by different criteria, and remove employees when necessary.
+The application is built using Python with the Django framework for the backend and uses SQL databases to store and manage employee records. The user interface is created with HTML, CSS, and Bootstrap, making it simple and user-friendly.
