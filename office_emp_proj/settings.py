@@ -1,17 +1,23 @@
 from pathlib import Path
 import os
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# =========================
 # SECURITY
-SECRET_KEY = 'django-insecure-uo_0xt$=8om7dglqb*=cf__2glkv9)o!-&6-t25h=$p^q%=7cx'
+# =========================
 
-DEBUG = False   # 🔴 Production ke liye False
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-ALLOWED_HOSTS = ["*"]   # 🔴 Deployment ke liye allow all
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+
+ALLOWED_HOSTS = ['.onrender.com']
 
 
-# Application definition
+# =========================
+# APPLICATIONS
+# =========================
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -23,10 +29,11 @@ INSTALLED_APPS = [
     'emp_app',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 
-    # ✅ WhiteNoise for static files
+    # WhiteNoise for static files
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -37,7 +44,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'office_emp_proj.urls'
+
 
 TEMPLATES = [
     {
@@ -54,19 +63,25 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'office_emp_proj.wsgi.application'
 
 
-# Database
+# =========================
+# DATABASE (Render PostgreSQL)
+# =========================
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
 }
 
 
-# Password validation
+# =========================
+# PASSWORD VALIDATION
+# =========================
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -83,18 +98,23 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
+# =========================
+# INTERNATIONALIZATION
+# =========================
+
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
 
-# Static files configuration
+# =========================
+# STATIC FILES
+# =========================
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# WhiteNoise production optimization
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
