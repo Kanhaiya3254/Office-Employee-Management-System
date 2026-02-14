@@ -1,58 +1,30 @@
-from django.shortcuts import render, HttpResponse
-from .models import Employee, Department, Role
-from datetime import datetime
+from django.shortcuts import render, redirect
+from .models import Employee
 
 
-# ✅ Home Page
 def index(request):
-    return render(request, "index.html")
+    return render(request, 'index.html')
 
 
-# ✅ View All Employees
 def all_emp(request):
     emps = Employee.objects.all()
-    return render(request, "all_emp.html", {"emps": emps})
+    context = {
+        'emps': emps
+    }
+    return render(request, 'all_emp.html', context)
 
 
-# ✅ Add Employee
-def add_emp(request):
-    if request.method == "POST":
+def remove_emp(request, emp_id=None):
+    if emp_id:
         try:
-            first_name = request.POST.get("first_name")
-            last_name = request.POST.get("last_name")
-            salary = request.POST.get("salary")
-            bonus = request.POST.get("bonus")
-            phone = request.POST.get("phone")
-            dept_id = request.POST.get("dept")
-            role_id = request.POST.get("role")
+            emp = Employee.objects.get(id=emp_id)
+            emp.delete()
+            return redirect('all_emp')
+        except:
+            return redirect('remove_emp')
 
-            if not all([first_name, last_name, salary, bonus, phone, dept_id, role_id]):
-                return HttpResponse("⚠ All fields are required!")
-
-            dept = Department.objects.get(id=int(dept_id))
-            role = Role.objects.get(id=int(role_id))
-
-            new_emp = Employee(
-                first_name=first_name,
-                last_name=last_name,
-                salary=int(salary),
-                bonus=int(bonus),
-                phone=int(phone),
-                dept=dept,
-                role=role,
-                hire_date=datetime.now()
-            )
-
-            new_emp.save()
-            return HttpResponse("✅ Employee Added Successfully!")
-
-        except Exception as e:
-            return HttpResponse(f"❌ Error: {e}")
-
-    departments = Department.objects.all()
-    roles = Role.objects.all()
-
-    return render(request, "add_emp.html", {
-        "departments": departments,
-        "roles": roles
-    })
+    emps = Employee.objects.all()
+    context = {
+        'emps': emps
+    }
+    return render(request, 'remove_emp.html', context)
