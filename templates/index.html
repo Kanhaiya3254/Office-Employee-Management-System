@@ -1,39 +1,13 @@
-{% load static %}
 <!doctype html>
-<html lang="en">
+<html>
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}" />
-
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-
-    <title>Office Employee Management System</title>
+    <title>Office Employee Management</title>
   </head>
-
   <body>
-    <div class="container mt-5">
-      <h1 class="text-center">Office Employee Management System</h1>
-      <hr />
+    <h1>Office Employee Management System</h1>
 
-      <div class="d-grid gap-2 col-6 mx-auto">
-        <a class="btn btn-primary" href="/all_emp">View All Employee</a>
-        <a class="btn btn-success" href="/add_emp">Add An Employee</a>
-        <a class="btn btn-danger" href="/remove_emp">Remove An Employee</a>
-        <a class="btn btn-warning" href="/filter_emp"
-          >Filter Employee Details</a
-        >
-      </div>
-    </div>
-
-    <!-- Bootstrap Bundle JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <a href="/all_emp/">View All Employees</a><br /><br />
+    <a href="/add_emp/">Add Employee</a><br /><br />
+    <a href="/remove_emp/">Remove Employee</a>
   </body>
 </html>

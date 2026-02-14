@@ -1,89 +1,27 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Add Employee</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-  </head>
+<h1>Add Employee</h1>
 
-  <body class="bg-light">
-    <div class="container mt-5">
-      <div class="card shadow p-4">
-        <h2 class="text-center mb-4">Add Employee</h2>
+<form method="POST">
+  {% csrf_token %} First Name:
+  <input type="text" name="first_name" /><br /><br />
+  Last Name: <input type="text" name="last_name" /><br /><br />
+  Salary: <input type="number" name="salary" /><br /><br />
+  Bonus: <input type="number" name="bonus" /><br /><br />
 
-        <form method="post">
-          {% csrf_token %}
+  Role:
+  <select name="role">
+    {% for role in roles %}
+    <option value="{{ role.id }}">{{ role.name }}</option>
+    {% endfor %}</select
+  ><br /><br />
 
-          <!-- First Name -->
-          <div class="mb-3">
-            <label class="form-label">First Name</label>
-            <input
-              type="text"
-              name="first_name"
-              class="form-control"
-              required
-            />
-          </div>
+  Department:
+  <select name="dept">
+    {% for dept in depts %}
+    <option value="{{ dept.id }}">{{ dept.name }}</option>
+    {% endfor %}</select
+  ><br /><br />
 
-          <!-- Last Name -->
-          <div class="mb-3">
-            <label class="form-label">Last Name</label>
-            <input type="text" name="last_name" class="form-control" required />
-          </div>
+  <button type="submit">Add Employee</button>
+</form>
 
-          <!-- Salary -->
-          <div class="mb-3">
-            <label class="form-label">Salary</label>
-            <input type="number" name="salary" class="form-control" required />
-          </div>
-
-          <!-- Bonus -->
-          <div class="mb-3">
-            <label class="form-label">Bonus</label>
-            <input type="number" name="bonus" class="form-control" required />
-          </div>
-
-          <!-- Phone -->
-          <div class="mb-3">
-            <label class="form-label">Phone Number</label>
-            <input type="number" name="phone" class="form-control" required />
-          </div>
-
-          <!-- Department -->
-          <div class="mb-3">
-            <label class="form-label">Department</label>
-            <select name="dept" class="form-select" required>
-              <option value="">Select Department</option>
-              {% for dept in departments %}
-              <option value="{{ dept.id }}">{{ dept.name }}</option>
-              {% endfor %}
-            </select>
-          </div>
-
-          <!-- Role -->
-          <div class="mb-4">
-            <label class="form-label">Role</label>
-            <select name="role" class="form-select" required>
-              <option value="">Select Role</option>
-              {% for role in roles %}
-              <option value="{{ role.id }}">{{ role.name }}</option>
-              {% endfor %}
-            </select>
-          </div>
-
-          <!-- Submit Button -->
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary px-4">
-              Add Employee
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+<a href="/">Back</a>
