@@ -2,19 +2,31 @@
 <html>
   <head>
     <title>Remove Employee</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>Remove Employee</h1>
-    <hr />
+    <div class="container mt-5">
+      <h2>Remove Employee</h2>
+      <hr />
 
-    {% for emp in emps %}
-    <p>
-      {{ emp.first_name }} {{ emp.last_name }}
-      <a href="/remove_emp/{{ emp.id }}">Delete</a>
-    </p>
-    {% endfor %}
+      <ul class="list-group">
+        {% for emp in emps %}
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center"
+        >
+          {{ emp.first_name }} {{ emp.last_name }}
+          <a href="/remove_emp/{{ emp.id }}" class="btn btn-danger btn-sm"
+            >Delete</a
+          >
+        </li>
+        {% endfor %}
+      </ul>
 
-    <br />
-    <a href="/">Back</a>
+      <br />
+      <a href="/" class="btn btn-secondary">Back</a>
+    </div>
   </body>
 </html>
