@@ -1,39 +1,8 @@
-<!doctype html>
-<html>
-  <head>
-    <title>All Employees</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="container mt-5">
-      <h2>All Employees</h2>
-      <hr />
-
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Department</th>
-            <th>Salary</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for emp in emps %}
-          <tr>
-            <td>{{ emp.first_name }} {{ emp.last_name }}</td>
-            <td>{{ emp.role.name }}</td>
-            <td>{{ emp.dept.name }}</td>
-            <td>{{ emp.salary }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-
-      <a href="/" class="btn btn-secondary">Back</a>
-    </div>
-  </body>
-</html>
+<h1>All Employees</h1>
+{% for emp in emps %}
+<p>
+  {{ emp.first_name }} {{ emp.last_name }} | {{ emp.role.name }} | {{
+  emp.dept.name }}
+</p>
+{% endfor %}
+<a href="/">Back</a>
