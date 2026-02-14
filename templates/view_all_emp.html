@@ -1,10 +1,18 @@
-<h1>All Employees</h1>
+<!doctype html>
+<html>
+  <head>
+    <title>All Employees</title>
+  </head>
+  <body>
+    <h1>All Employees</h1>
 
-{% for emp in emps %}
-<p>
-  {{ emp.first_name }} {{ emp.last_name }} | {{ emp.role.name }} | {{
-  emp.dept.name }}
-</p>
-{% endfor %}
+    {% for emp in emps %}
+    <p>
+      {{ emp.first_name }} {{ emp.last_name }} | {{ emp.role.name }} | {{
+      emp.dept.name }}
+    </p>
+    {% endfor %}
 
-<a href="/">Back</a>
+    <a href="/">Back</a>
+  </body>
+</html>
