@@ -5,14 +5,16 @@
   </head>
   <body>
     <h1>Remove Employee</h1>
+    <hr />
 
     {% for emp in emps %}
     <p>
       {{ emp.first_name }} {{ emp.last_name }}
-      <a href="{% url 'remove_emp' emp.id %}">Delete</a>
+      <a href="/remove_emp/{{ emp.id }}">Delete</a>
     </p>
     {% endfor %}
 
+    <br />
     <a href="/">Back</a>
   </body>
 </html>

@@ -5,14 +5,16 @@
   </head>
   <body>
     <h1>All Employees</h1>
+    <hr />
 
     {% for emp in emps %}
     <p>
       {{ emp.first_name }} {{ emp.last_name }} | {{ emp.role.name }} | {{
-      emp.dept.name }}
+      emp.dept.name }} | {{ emp.salary }}
     </p>
     {% endfor %}
 
+    <br />
     <a href="/">Back</a>
   </body>
 </html>

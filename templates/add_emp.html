@@ -5,6 +5,7 @@
   </head>
   <body>
     <h1>Add Employee</h1>
+    <hr />
 
     <form method="POST">
       {% csrf_token %} First Name:
@@ -23,19 +24,22 @@
       <select name="role">
         {% for role in roles %}
         <option value="{{ role.id }}">{{ role.name }}</option>
-        {% endfor %}</select
-      ><br /><br />
+        {% endfor %}
+      </select>
+      <br /><br />
 
       Department:
       <select name="dept">
         {% for dept in depts %}
         <option value="{{ dept.id }}">{{ dept.name }}</option>
-        {% endfor %}</select
-      ><br /><br />
+        {% endfor %}
+      </select>
+      <br /><br />
 
       <button type="submit">Add Employee</button>
     </form>
 
+    <br />
     <a href="/">Back</a>
   </body>
 </html>
